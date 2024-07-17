@@ -56,4 +56,4 @@ build-iPhoneSimulator/
 # .rubocop-https?--*
 
 # Don't put DB into release
-./sec.db
+sec.db
