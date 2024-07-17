@@ -57,3 +57,7 @@ build-iPhoneSimulator/
 
 # Don't put DB into release
 sec.db
+
+# Ignore test config to release
+config.rb
+Gemfile.lock
