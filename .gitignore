@@ -61,3 +61,4 @@ sec.db
 # Ignore test config to release
 config.rb
 Gemfile.lock
+validator
