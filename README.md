@@ -31,33 +31,26 @@ bundle install
 ```
 ![image](https://github.com/user-attachments/assets/dc3a9e8c-ce4d-4ce4-823f-20b9c84ae469)
 
-| RED LED       | NodeMCU ESP32 DEVKITv1  | 
-|:-------------:|:-----------------------:|
-| cathode        | GND                    |
-| anode          | D12                    |
-
-| BLUE LED       | NodeMCU ESP32 DEVKITv1 | 
-|:--------------:|:----------------------:|
-| cathode         | GND                   |
-| anode           | D32                   |
-
-| BUZZER        | NodeMCU ESP32 DEVKITv1  | 
-|:-------------:|:-----------------------:|
-| -             | GND                     |
-| +             | D2                      |
-
-| RFID-RC522    | NodeMCU ESP32 DEVKITv1  | 
-|:-------------:|:-----------------------:|
-| SDA           | D22                     |
-| SCK           | D18                     |
-| MOSI          | D23                     |
-| MISO          | D19                     |
-| IRQ           | empty                   |
-| GND           | GND                     |
-| RST           | D4                      |
-| 3.3V          | 3V3                     |
-
-| TP 4056       | NodeMCU ESP32 DEVKITv1  | 
-|:-------------:|:-----------------------:|
-| USB +         | VIN (5V)                |
-| USB -         | GND                     |
+| RED LED       | NodeMCU ESP32 DEVKITv1   | 
+|:-------------:|:------------------------:|
+| cathode        | GND                     |
+| anode          | D12                     |
+| **BLUE LED**   |                         | 
+| cathode        | GND                     |
+| anode          | D32                     |
+| **BUZZER**     |                         | 
+| -              | GND                     |
+| +              | D2                      |
+| **RFID-RC522** |                         | 
+| SDA            | D22                     |
+| SCK            | D18                     |
+| MOSI           | D23                     |
+| MISO           | D19                     |
+| IRQ            | empty                   |
+| GND            | GND                     |
+| RST            | D4                      |
+| 3.3V           | 3V3                     |
+| **TP 4056**    |                         | 
+| USB +          | VIN (5V)                |
+| USB -          | GND                     |
+---
