@@ -5,7 +5,7 @@
 #include <ArduinoJson.h>
 
 #define SERVER_ADDRESS "YOUR SERVER IP (same as in config.rb)"
-#define SERVER_PORT    8000 // whatever port you prefer
+#define SERVER_PORT    8000 // YOUR SERVER PORT (same as in config.rb)
 
 bool getResponse(String uid, int level) {
     String url = "http://" + String(SERVER_ADDRESS) + ":" + String(SERVER_PORT) + "/auth?id=" + uid + "&lvl=" + String(level);
