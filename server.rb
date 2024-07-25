@@ -1,21 +1,42 @@
 require 'sinatra'
-require 'sqlite3'
 require_relative 'config.rb'
+require_relative 'access_control.rb'
 
-db = SQLite3::Database.new 'sec.db'
+access_manager = AccessManager.new('sec.db')
+mutex = Mutex.new
 
-def allow_access?(db, id, lvl)
-    query = "SELECT COUNT(*) FROM staff WHERE card_id = ? AND access_lvl >= ?"
-    # access is only possible if the level of the place is lower than or equal to the level of the entering person
-    count = db.get_first_value(query, id, lvl)
-    return count > 0
-end
+alert = [
+    'User successfully added to database!', # 0
+    'User might already exist.',            # 1
+    'User successfully updated!'            # 2
+]
 
 before do
     content_type :json
 end
 
 get '/auth' do
-    { access: allow_access?(db, params['id'], params['lvl']) }.to_json
+    { access: access_manager.allow_access(params['id'], params['lvl'], mutex) }.to_json
 end
 
+get '/admin' do
+    return { authorized: false, response: 'Invalid key!' }.to_json if params['master_key'] != MASTER_KEY_HASH
+
+    case params['command']
+    when 'add'
+        status = access_manager.add_user(params['id'], params['lvl'], params['info'], mutex)
+        return {
+            status: status,
+            response: status ? alert[0] : alert[1]
+        }.to_json
+    when 'edit'
+        status = access_manager.edit_user(params['id'], params['lvl'], params['info'], mutex)
+        return {
+            status: status,
+            response: status ? alert[2] : alert[0]
+        }.to_json
+    when 'delete'
+        access_manager.delete_user(params['id'], mutex)
+        return { status: true }.to_json
+    end
+end

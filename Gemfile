@@ -4,4 +4,7 @@ source "https://rubygems.org"
 
 gem "sinatra"
 gem 'sqlite3'
-gem "webrick"
+gem 'puma'
+# gem "webrick"
+# gem 'thin'
+# gem 'mongrel'
