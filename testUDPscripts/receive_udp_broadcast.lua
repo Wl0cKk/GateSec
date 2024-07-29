@@ -9,6 +9,6 @@ print("Listening " .. port .. "...")
 
 while true do
     local data, ip = udp:receivefrom()
-    local msg = json.decode(data)
-    print("IP: " .. msg.ip .. " NOTE: " .. msg.note)
+    -- local msg = json.decode(data)
+    print(data)
 end
