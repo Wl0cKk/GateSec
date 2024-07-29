@@ -1,9 +1,6 @@
 #ifndef HTTP_SERVICE_HPP
 #define HTTP_SERVICE_HPP
 
-#include <HTTPClient.h>
-#include <ArduinoJson.h>
-
 #define SERVER_ADDRESS "YOUR SERVER IP (same as in config.rb)"
 #define SERVER_PORT    8000 // YOUR SERVER PORT (same as in config.rb)
 
