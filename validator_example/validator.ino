@@ -1,5 +1,6 @@
 #include <SPI.h>
 #include <WiFi.h>
+#include <WiFiUdp.h>
 #include <MFRC522.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
@@ -20,7 +21,7 @@ void setup() {
     pinMode(BUZZER_PIN, OUTPUT);
     initRFID();
     connectToWiFi();
-    xTaskCreatePinnedToCore(sendUDPMessageTask, "udpTask", 10000, NULL, 1, &udpTask, 1);
+    xTaskCreatePinnedToCore(listenForUDPMessageTask, "UDP Listener", 10000, NULL, 1, &udpTask, 1);
 }
 
 void loop() {
@@ -30,14 +31,7 @@ void loop() {
         Serial.println(uid);
         ( getResponse(uid, LEVEL) ? granted : denied )();
     }
-    delay(200);
-}
-
-void sendUDPMessageTask(void *parameter) {
-    for (;;) {
-        sendMessageToUDP();
-        vTaskDelay(pdMS_TO_TICKS(5000));
-    }
+    vTaskDelay(pdMS_TO_TICKS(200));
 }
 
 void connectToWiFi() {
